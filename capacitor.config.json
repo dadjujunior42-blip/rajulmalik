@@ -1,0 +1,7 @@
+{
+  "appId": "com.rajulmalik.app",
+  "appName": "Rajul Malik",
+  "webDir": "www",
+  "server": { "androidScheme": "https" },
+  "android": { "allowMixedContent": false }
+}
