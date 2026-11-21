@@ -1,0 +1,42 @@
+name: Build appli Android (signée)
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      KEYSTORE_FILE: ${{ github.workspace }}/android/app/release.jks
+      KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      VERSION_CODE: ${{ github.run_number }}
+      VERSION_NAME: "15.1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 17 }
+      - name: Vérifier les secrets
+        run: |
+          [ -n "${{ secrets.KEYSTORE_BASE64 }}" ] || { echo "Secret KEYSTORE_BASE64 manquant"; exit 1; }
+          [ -n "$KEYSTORE_PASSWORD" ] || { echo "Secret KEYSTORE_PASSWORD manquant"; exit 1; }
+      - run: npm install
+      - run: npm run web
+      - run: npx cap add android
+      - name: Icône (si resources/icon.png existe)
+        run: |
+          if [ -f resources/icon.png ]; then npx --yes @capacitor/assets generate --android; else echo "Pas d'icône perso, icône par défaut"; fi
+      - run: npx cap sync android
+      - name: Clé de signature
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/app/release.jks
+      - run: node scripts/patch-android.js
+      - name: Compiler APK + AAB signés
+        working-directory: android
+        run: ./gradlew assembleRelease bundleRelease
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rajul-appli
+          path: |
+            android/app/build/outputs/apk/release/*.apk
+            android/app/build/outputs/bundle/release/*.aab
