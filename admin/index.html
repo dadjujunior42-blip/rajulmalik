@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#05061f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Admin Rajul">
+<title>Admin · Rajul Malik</title>
+<style>
+:root{--bg:#05061f;--tx:#f5f5f5;--sub:#a9a9c4;--acc:linear-gradient(135deg,#4b3cf0,#2a8cff);--gl:rgba(255,255,255,.09);--gl2:rgba(255,255,255,.14);--bd:rgba(255,255,255,.22)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--tx);font:16px/1.45 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+body{padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);position:relative;overflow-x:hidden}
+.bgw{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(160deg,#05061f,#0b0f4a 55%,#05061f)}
+.bgw i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55}
+.bgw i:nth-child(1){width:380px;height:380px;left:-120px;top:-80px;background:#1530ff}
+.bgw i:nth-child(2){width:320px;height:320px;right:-110px;top:30%;background:#a78bfa;opacity:.4}
+.bgw i:nth-child(3){width:360px;height:360px;left:10%;bottom:-140px;background:#2a8cff;opacity:.45}
+#app{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:18px 14px 50px}
+h1{font-size:22px;font-weight:600;letter-spacing:-.01em;margin:0}
+h2{font-size:17px;font-weight:600;margin:22px 4px 10px}
+small,.mut{color:var(--sub);font-size:13px}
+.mut{display:block;text-align:center;padding:24px 0}
+.card{background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.06));border:1px solid var(--bd);border-radius:28px;padding:16px;margin-bottom:12px;box-shadow:0 8px 30px rgba(0,0,20,.35),inset 0 1px 0 rgba(255,255,255,.3);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6)}
+label{display:block;font-size:13px;font-weight:500;color:var(--sub);margin:14px 4px 6px}
+input,textarea,select{width:100%;padding:13px 16px;border-radius:18px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,20,.35);color:var(--tx);font:inherit;font-size:16px;-webkit-appearance:none;appearance:none;outline:none;transition:border-color .2s,background .2s}
+input:focus,textarea:focus,select:focus{border-color:#7aa8ff;background:rgba(0,0,30,.5)}
+textarea{min-height:140px;resize:vertical}
+input[type=file]{padding:10px;font-size:14px}
+input[type=checkbox]{width:auto;margin-right:8px;vertical-align:middle}
+button{font:inherit;font-size:15px;font-weight:600;border:0;border-radius:99px;padding:12px 18px;min-height:46px;color:#fff;background:var(--acc);box-shadow:0 6px 18px rgba(42,100,255,.4),inset 0 1px 0 rgba(255,255,255,.35);text-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .12s,filter .12s}
+button:active{transform:scale(.95);filter:brightness(1.1)}
+button.sec{background:var(--gl2);border:1px solid var(--bd);box-shadow:none;text-shadow:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+button.dan{background:rgba(255,80,90,.18);border:1px solid rgba(255,110,120,.5);color:#ffb4b8;box-shadow:none;text-shadow:none}
+button.sm{min-height:38px;padding:8px 14px;font-size:14px}
+button:disabled{opacity:.5}
+.row{display:flex;gap:10px;align-items:center}
+.row>*{flex:1}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:4px 4px 8px}
+.top button{flex:none}
+.tabs{display:flex;gap:4px;margin:14px 0 16px;padding:5px;border-radius:99px;background:var(--gl);border:1px solid var(--bd);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.tabs button{flex:1;background:none;border:0;box-shadow:none;text-shadow:none;color:var(--sub)}
+.tabs button.on{background:rgba(255,255,255,.18);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.item{display:flex;gap:14px;align-items:center}
+.thumb{width:68px;height:68px;border-radius:20px;background:rgba(0,0,20,.4);object-fit:cover;flex:none;display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:12px;overflow:hidden;border:1px solid rgba(255,255,255,.15)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.item .t{flex:1;min-width:0}
+.item .t b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.acts{display:flex;gap:8px;margin-top:12px}
+.acts button{flex:1}
+.tag{display:inline-block;font-size:11px;font-weight:600;background:rgba(122,168,255,.2);border:1px solid rgba(122,168,255,.4);border-radius:99px;padding:2px 10px;margin:4px 6px 0 0;color:#cfe0ff}
+.prev{width:100%;max-height:200px;object-fit:cover;border-radius:20px;margin-top:8px}
+.msg{padding:11px 14px;border-radius:18px;margin:12px 0;font-size:14px}
+.err{background:rgba(255,80,90,.18);border:1px solid rgba(255,110,120,.45);color:#ffc4c8}
+.ok{background:rgba(60,220,140,.16);border:1px solid rgba(90,230,160,.45);color:#b5f5d0}
+.bar{height:8px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;width:0;background:var(--acc)}
+.phone{width:100%;max-width:390px;margin:0 auto;height:min(760px,calc(100vh - 230px));min-height:520px;border-radius:44px;padding:8px;background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.08));border:1px solid var(--bd);box-shadow:0 14px 40px rgba(0,0,20,.5)}
+.phone iframe{width:100%;height:100%;border:0;border-radius:36px;background:#000;display:block}
+#toast{position:fixed;z-index:5;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0));transform:translateX(-50%);background:rgba(20,22,60,.85);border:1px solid var(--bd);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%}
+#toast.on{opacity:1}
+</style>
+</head>
+<body>
+<div class="bgw"><i></i><i></i><i></i></div>
+<div id="app"></div>
+<div id="toast"></div>
+<script>
+"use strict";
+/* ===== Réglages Supabase : clé "anon" publique (la sécurité vient des règles RLS : seul le compte admin peut écrire) ===== */
+var SB = {
+  url: "https://pomtotyhodfaennspscg.supabase.co",
+  key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvbXRvdHlob2RmYWVubnNwc2NnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUyODU0MTIsImV4cCI6MjExMDg2MTQxMn0.IXdjWbONzLkZhfhVIZ8-XOiW5orOSoGGqmeGwTCoAVs"
+};
+/* Adresse de l'appli publique pour l'onglet Aperçu. En local : "../index.html". Sur GitHub Pages (admin séparé), mets ici l'adresse complète de l'appli, ex. "https://ton-site/index.html" */
+var APP_URL = "../index.html";
+var STORE = "rm-admin-session", MAX_VIDEO = 50 * 1024 * 1024;
+var $ = function (s) { return document.querySelector(s); };
+var esc = function (x) {
+  return String(x == null ? "" : x).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+};
+var sess = null;
+try { sess = JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) {}
+var st = { tab: "news", news: [], conc: [], edit: null, busy: false, loaded: false };
+
+function toast(m) {
+  var e = $("#toast"); e.textContent = m; e.className = "on";
+  clearTimeout(toast.t); toast.t = setTimeout(function () { e.className = ""; }, 2600);
+}
+function ytId(u) {
+  var m = String(u || "").match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/))([\w-]{11})/);
+  return m ? m[1] : "";
+}
+function fr(iso, withTime) {
+  var d = new Date(iso);
+  var o = { day: "numeric", month: "long", year: "numeric" };
+  if (withTime) { o.hour = "2-digit"; o.minute = "2-digit"; }
+  return d.toLocaleString("fr-FR", o);
+}
+function toLocalInput(iso) {
+  var d = new Date(iso), p = function (n) { return String(n).padStart(2, "0"); };
+  return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()) + "T" + p(d.getHours()) + ":" + p(d.getMinutes());
+}
+
+/* ---------- Session ---------- */
+function saveSess(j) {
+  sess = {
+    access: j.access_token, refresh: j.refresh_token,
+    exp: Date.now() + (j.expires_in || 3600) * 1000,
+    email: (j.user && j.user.email) || (sess && sess.email) || ""
+  };
+  try { localStorage.setItem(STORE, JSON.stringify(sess)); } catch (e) {}
+}
+function logout() {
+  sess = null; try { localStorage.removeItem(STORE); } catch (e) {}
+  st = { tab: "news", news: [], conc: [], edit: null, busy: false, loaded: false };
+  render();
+}
+function authFetch(grant, body) {
+  return fetch(SB.url + "/auth/v1/token?grant_type=" + grant, {
+    method: "POST",
+    headers: { apikey: SB.key, "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); });
+}
+function login(email, pw) {
+  return authFetch("password", { email: email, password: pw }).then(function (o) {
+    if (!o.ok) throw new Error(o.j && (o.j.error_code === "invalid_credentials" || o.j.error === "invalid_grant") ? "E-mail ou mot de passe incorrect." : ((o.j && (o.j.msg || o.j.error_description || o.j.message)) || "Connexion impossible."));
+    saveSess(o.j);
+  });
+}
+function token() {
+  if (!sess) return Promise.reject(new Error("Non connecté"));
+  if (sess.exp - Date.now() > 60000) return Promise.resolve(sess.access);
+  return authFetch("refresh_token", { refresh_token: sess.refresh }).then(function (o) {
+    if (!o.ok) { logout(); throw new Error("Session expirée, reconnecte-toi."); }
+    saveSess(o.j); return sess.access;
+  });
+}
+
+/* ---------- Appels base de données ---------- */
+function friendly(m) {
+  if (/row-level security|policy/i.test(m)) return "Ce compte n’a pas le droit de modifier (il faut être l’administrateur).";
+  return m;
+}
+function api(method, path, body) {
+  return token().then(function (t) {
+    var h = { apikey: SB.key, Authorization: "Bearer " + t };
+    if (body !== undefined) { h["Content-Type"] = "application/json"; h["Prefer"] = "return=minimal"; }
+    return fetch(SB.url + "/rest/v1/" + path, {
+      method: method, headers: h, body: body !== undefined ? JSON.stringify(body) : undefined
+    });
+  }).then(function (r) {
+    if (!r.ok) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        throw new Error(friendly(j.message || ("Erreur " + r.status)));
+      });
+    }
+    return r.status === 204 ? null : r.text().then(function (x) { return x ? JSON.parse(x) : null; });
+  });
+}
+function upload(blob, name, onp) {
+  return token().then(function (t) {
+    return new Promise(function (res, rej) {
+      var x = new XMLHttpRequest();
+      x.open("POST", SB.url + "/storage/v1/object/news/" + name);
+      x.setRequestHeader("apikey", SB.key);
+      x.setRequestHeader("Authorization", "Bearer " + t);
+      x.setRequestHeader("Content-Type", blob.type || "application/octet-stream");
+      x.setRequestHeader("x-upsert", "false");
+      x.upload.onprogress = function (e) { if (e.lengthComputable && onp) onp(Math.round(e.loaded / e.total * 100)); };
+      x.onload = function () {
+        if (x.status < 300) res(SB.url + "/storage/v1/object/public/news/" + name);
+        else rej(new Error(x.status === 413 ? "Fichier trop gros." : "Envoi échoué (" + x.status + ")."));
+      };
+      x.onerror = function () { rej(new Error("Pas de connexion internet.")); };
+      x.send(blob);
+    });
+  });
+}
+function removeFile(url) {
+  var pre = SB.url + "/storage/v1/object/public/news/";
+  if (!url || url.indexOf(pre) !== 0) return Promise.resolve();
+  var name = url.slice(pre.length);
+  return token().then(function (t) {
+    return fetch(SB.url + "/storage/v1/object/news/" + name, {
+      method: "DELETE", headers: { apikey: SB.key, Authorization: "Bearer " + t }
+    });
+  }).catch(function () {});
+}
+function compress(file, max) {
+  return new Promise(function (res, rej) {
+    var u = URL.createObjectURL(file), im = new Image();
+    im.onload = function () {
+      var w = im.naturalWidth, h = im.naturalHeight, k = Math.min(1, max / Math.max(w, h));
+      w = Math.round(w * k); h = Math.round(h * k);
+      var c = document.createElement("canvas"); c.width = w; c.height = h;
+      c.getContext("2d").drawImage(im, 0, 0, w, h);
+      URL.revokeObjectURL(u);
+      c.toBlob(function (b) { b ? res(b) : rej(new Error("Photo illisible.")); }, "image/jpeg", 0.82);
+    };
+    im.onerror = function () { URL.revokeObjectURL(u); rej(new Error("Photo illisible.")); };
+    im.src = u;
+  });
+}
+function rid() { return Date.now() + "-" + Math.random().toString(36).slice(2, 8); }
+
+function loadAll() {
+  return Promise.all([
+    api("GET", "news?select=*&order=created_at.desc"),
+    api("GET", "concerts?select=*&order=starts_at.desc")
+  ]).then(function (r) { st.news = r[0] || []; st.conc = r[1] || []; st.loaded = true; render(); })
+    .catch(function (e) { st.loaded = true; render(); showMsg(e.message, true); });
+}
+function showMsg(m, isErr) {
+  var b = $("#msg"); if (!b) return toast(m);
+  b.className = "msg " + (isErr ? "err" : "ok"); b.textContent = m;
+}
+
+/* ---------- Vues ---------- */
+function render() {
+  var app = $("#app");
+  if (!sess) { app.innerHTML = loginH(); bindLogin(); return; }
+  if (st.edit) { app.innerHTML = st.edit.type === "news" ? newsFormH() : concFormH(); bindForm(); return; }
+  app.innerHTML = mainH(); bindMain();
+}
+function loginH() {
+  return '<div class="top"><h1>Administration</h1></div><small>Rajul Malik · réservé à l’administrateur</small>' +
+    '<div class="card" style="margin-top:16px"><label for="em">E-mail</label>' +
+    '<input id="em" type="email" autocomplete="username" autocapitalize="none" autocorrect="off" inputmode="email">' +
+    '<label for="pw">Mot de passe</label><input id="pw" type="password" autocomplete="current-password">' +
+    '<div id="msg"></div><button id="go" style="width:100%;margin-top:6px">Se connecter</button></div>';
+}
+function bindLogin() {
+  var go = function () {
+    var em = $("#em").value.trim(), pw = $("#pw").value;
+    if (!em || !pw) return showMsg("Entre ton e-mail et ton mot de passe.", true);
+    $("#go").disabled = true; $("#go").textContent = "Connexion…";
+    login(em, pw).then(function () { render(); loadAll(); }).catch(function (e) {
+      $("#go").disabled = false; $("#go").textContent = "Se connecter"; showMsg(e.message, true);
+    });
+  };
+  $("#go").onclick = go;
+  $("#pw").onkeydown = function (e) { if (e.key === "Enter") go(); };
+}
+function kind(r) {
+  if (ytId(r.video_url)) return "YouTube";
+  if (r.video_url) return "Vidéo";
+  if (r.image_url) return "Photo";
+  return "Texte";
+}
+function mainH() {
+  var h = '<div class="top"><div><h1>Administration</h1><small>' + esc(sess.email) + '</small></div>' +
+    '<button class="sec sm" id="out">Quitter</button></div>' +
+    '<div class="tabs"><button data-t="news" class="' + (st.tab === "news" ? "on" : "") + '">Actualités</button>' +
+    '<button data-t="conc" class="' + (st.tab === "conc" ? "on" : "") + '">Concerts</button>' +
+    '<button data-t="prev" class="' + (st.tab === "prev" ? "on" : "") + '">Aperçu</button></div><div id="msg"></div>';
+  if (st.tab === "prev") {
+    return h + '<div class="row" style="margin-bottom:12px"><button class="sec sm" id="rf">↻ Actualiser</button>' +
+      '<button class="sec sm" id="op">Ouvrir seul ↗</button></div>' +
+      '<div class="phone"><iframe id="pf" src="' + esc(APP_URL) + '" title="Aperçu de l\u2019appli"></iframe></div>' +
+      '<small style="display:block;text-align:center;margin-top:10px">Voici ce que les gens voient. Après une publication, touche « Actualiser ».</small>';
+  }
+  if (!st.loaded) return h + '<p class="mut">Chargement…</p>';
+  if (st.tab === "news") {
+    h += '<button id="add" style="width:100%">+ Nouvelle actualité</button><h2>Publiées (' + st.news.length + ')</h2>';
+    if (!st.news.length) h += '<p class="mut">Aucune actualité pour le moment.</p>';
+    st.news.forEach(function (r) {
+      h += '<div class="card"><div class="item"><div class="thumb">' +
+        (r.image_url ? '<img src="' + esc(r.image_url) + '" alt="">' : esc(kind(r))) + '</div>' +
+        '<div class="t"><b>' + esc(r.title) + '</b><small>' + esc(fr(r.created_at)) + '</small><div><span class="tag">' + kind(r) + '</span></div></div></div>' +
+        '<div class="acts"><button class="sec sm" data-e="' + r.id + '">Modifier</button><button class="dan sm" data-d="' + r.id + '">Supprimer</button></div></div>';
+    });
+  } else {
+    h += '<button id="add" style="width:100%">+ Nouveau concert</button><h2>Concerts (' + st.conc.length + ')</h2>';
+    if (!st.conc.length) h += '<p class="mut">Aucun concert pour le moment.</p>';
+    st.conc.forEach(function (r) {
+      h += '<div class="card"><b>' + esc(r.title) + '</b><br><small>' + esc(fr(r.starts_at, true)) + '</small><br><small>' +
+        esc([r.venue, r.city].filter(Boolean).join(" · ")) + '</small>' +
+        '<div class="acts"><button class="sec sm" data-e="' + r.id + '">Modifier</button><button class="dan sm" data-d="' + r.id + '">Supprimer</button></div></div>';
+    });
+  }
+  return h;
+}
+function bindMain() {
+  $("#out").onclick = function () { if (confirm("Te déconnecter ?")) logout(); };
+  Array.prototype.forEach.call(document.querySelectorAll(".tabs button"), function (b) {
+    b.onclick = function () { st.tab = b.getAttribute("data-t"); render(); };
+  });
+  var rf = $("#rf"); if (rf) rf.onclick = function () { $("#pf").src = APP_URL + (APP_URL.indexOf("?") < 0 ? "?" : "&") + "t=" + Date.now(); };
+  var op = $("#op"); if (op) op.onclick = function () { window.open(APP_URL, "_blank"); };
+  var add = $("#add"); if (add) add.onclick = function () { st.edit = { type: st.tab, row: null }; render(); window.scrollTo(0, 0); };
+  Array.prototype.forEach.call(document.querySelectorAll("[data-e]"), function (b) {
+    b.onclick = function () {
+      var id = +b.getAttribute("data-e"), list = st.tab === "news" ? st.news : st.conc;
+      st.edit = { type: st.tab, row: list.filter(function (r) { return r.id === id; })[0] }; render(); window.scrollTo(0, 0);
+    };
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-d]"), function (b) {
+    b.onclick = function () {
+      var id = +b.getAttribute("data-d");
+      if (!confirm("Supprimer définitivement ?")) return;
+      var tbl = st.tab === "news" ? "news" : "concerts", list = st.tab === "news" ? st.news : st.conc;
+      var row = list.filter(function (r) { return r.id === id; })[0];
+      b.disabled = true;
+      api("DELETE", tbl + "?id=eq." + id).then(function () {
+        if (tbl === "news" && row) { removeFile(row.image_url); removeFile(row.video_url); }
+        toast("Supprimé"); return loadAll();
+      }).catch(function (e) { b.disabled = false; showMsg(e.message, true); });
+    };
+  });
+}
+
+/* ---- Formulaire actualité ---- */
+function newsFormH() {
+  var r = st.edit.row || {}, yt = ytId(r.video_url), mode = yt ? "yt" : (r.video_url ? "file" : "none");
+  return '<div class="top"><h1>' + (r.id ? "Modifier l’actualité" : "Nouvelle actualité") + '</h1><button class="sec sm" id="cancel">Annuler</button></div>' +
+    '<div class="card"><label for="ti">Titre *</label><input id="ti" maxlength="140" value="' + esc(r.title || "") + '">' +
+    '<label for="bo">Texte</label><textarea id="bo">' + esc(r.body || "") + '</textarea>' +
+    '<label for="ph">Photo (facultatif)</label><input id="ph" type="file" accept="image/*">' +
+    (r.image_url ? '<img class="prev" id="curph" src="' + esc(r.image_url) + '" alt=""><label><input type="checkbox" id="rmph">Retirer la photo actuelle</label>' : '') +
+    '<img class="prev" id="newph" alt="" style="display:none">' +
+    '<label for="vm">Vidéo (facultatif)</label><select id="vm">' +
+    '<option value="none"' + (mode === "none" ? " selected" : "") + '>Aucune vidéo</option>' +
+    '<option value="yt"' + (mode === "yt" ? " selected" : "") + '>Lien YouTube (recommandé)</option>' +
+    '<option value="file"' + (mode === "file" ? " selected" : "") + '>Fichier vidéo (max 50 Mo)</option></select>' +
+    '<div id="vyt" style="display:none"><label for="yu">Lien YouTube</label><input id="yu" type="url" inputmode="url" autocapitalize="none" placeholder="https://www.youtube.com/watch?v=…" value="' + esc(yt ? r.video_url : "") + '"></div>' +
+    '<div id="vfi" style="display:none"><label for="vf">Fichier vidéo</label><input id="vf" type="file" accept="video/*">' +
+    '<small>Astuce : une vidéo d’iPhone peut ne pas se lire sur certains Android. Un lien YouTube marche partout.</small>' +
+    (mode === "file" ? '<br><small>Une vidéo est déjà enregistrée ; en choisir une autre la remplace.</small>' : '') + '</div>' +
+    '<div id="msg"></div><div class="bar" id="bar" style="display:none"><i></i></div>' +
+    '<button id="save" style="width:100%;margin-top:16px">Publier</button></div>';
+}
+/* ---- Formulaire concert ---- */
+function concFormH() {
+  var r = st.edit.row || {};
+  return '<div class="top"><h1>' + (r.id ? "Modifier le concert" : "Nouveau concert") + '</h1><button class="sec sm" id="cancel">Annuler</button></div>' +
+    '<div class="card"><label for="ct">Nom de l’événement *</label><input id="ct" maxlength="140" value="' + esc(r.title || "") + '">' +
+    '<label for="cv">Salle / lieu</label><input id="cv" maxlength="140" value="' + esc(r.venue || "") + '">' +
+    '<label for="cc">Ville</label><input id="cc" maxlength="80" value="' + esc(r.city || "") + '">' +
+    '<label for="cd">Date et heure *</label><input id="cd" type="datetime-local" value="' + (r.starts_at ? toLocalInput(r.starts_at) : "") + '">' +
+    '<label for="cu">Lien des billets (facultatif)</label><input id="cu" type="url" inputmode="url" autocapitalize="none" placeholder="https://…" value="' + esc(r.ticket_url || "") + '">' +
+    '<small>Sans lien, le bouton « Réserver » ouvre WhatsApp.</small>' +
+    '<div id="msg"></div><button id="save" style="width:100%;margin-top:16px">Enregistrer</button></div>';
+}
+function bindForm() {
+  $("#cancel").onclick = function () { if (!st.busy) { st.edit = null; render(); } };
+  if (st.edit.type === "conc") { $("#save").onclick = saveConc; return; }
+  var vm = $("#vm");
+  var sync = function () { $("#vyt").style.display = vm.value === "yt" ? "block" : "none"; $("#vfi").style.display = vm.value === "file" ? "block" : "none"; };
+  vm.onchange = sync; sync();
+  $("#ph").onchange = function () {
+    var f = this.files && this.files[0], im = $("#newph");
+    if (!f) { im.style.display = "none"; return; }
+    im.src = URL.createObjectURL(f); im.style.display = "block";
+  };
+  $("#save").onclick = saveNews;
+}
+function busy(on, label) { st.busy = on; var b = $("#save"); if (b) { b.disabled = on; if (label) b.textContent = label; } }
+function setBar(p) { var b = $("#bar"); if (!b) return; b.style.display = "block"; b.firstChild.style.width = p + "%"; }
+
+function saveNews() {
+  var old = st.edit.row || {}, title = $("#ti").value.trim(), body = $("#bo").value.trim();
+  if (!title) return showMsg("Le titre est obligatoire.", true);
+  var mode = $("#vm").value, ytUrl = $("#yu").value.trim(), vf = $("#vf").files && $("#vf").files[0], ph = $("#ph").files && $("#ph").files[0];
+  var rm = $("#rmph") && $("#rmph").checked;
+  if (mode === "yt" && !ytId(ytUrl)) return showMsg("Lien YouTube non reconnu. Colle le lien de la vidéo.", true);
+  if (mode === "file" && vf && vf.size > MAX_VIDEO) return showMsg("Vidéo trop lourde (max 50 Mo). Utilise plutôt un lien YouTube.", true);
+  if (mode === "file" && !vf && !(old.video_url && !ytId(old.video_url))) return showMsg("Choisis un fichier vidéo.", true);
+  busy(true, "Envoi en cours…"); showMsg("", false); $("#msg").className = "";
+  var row = { title: title, body: body, image_url: old.image_url || null, video_url: old.video_url || null };
+  var toDelete = [], chain = Promise.resolve();
+  if (rm) { toDelete.push(old.image_url); row.image_url = null; }
+  if (ph) chain = chain.then(function () { return compress(ph, 1280); }).then(function (b) {
+    setBar(5); return upload(b, "p-" + rid() + ".jpg", setBar);
+  }).then(function (u) { if (old.image_url && !rm) toDelete.push(old.image_url); row.image_url = u; });
+  if (mode === "none") { if (old.video_url) toDelete.push(old.video_url); row.video_url = null; }
+  else if (mode === "yt") { if (old.video_url && !ytId(old.video_url)) toDelete.push(old.video_url); row.video_url = ytUrl; }
+  else if (vf) chain = chain.then(function () {
+    var ext = (vf.name.split(".").pop() || "mp4").toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 5) || "mp4";
+    return upload(vf, "v-" + rid() + "." + ext, setBar);
+  }).then(function (u) { if (old.video_url && !ytId(old.video_url)) toDelete.push(old.video_url); row.video_url = u; });
+  chain.then(function () {
+    return old.id ? api("PATCH", "news?id=eq." + old.id, row) : api("POST", "news", row);
+  }).then(function () {
+    toDelete.forEach(removeFile);
+    st.edit = null; busy(false); toast("Publié ✔"); return loadAll();
+  }).catch(function (e) { busy(false, "Publier"); showMsg(e.message, true); });
+}
+function saveConc() {
+  var old = st.edit.row || {}, title = $("#ct").value.trim(), d = $("#cd").value, u = $("#cu").value.trim();
+  if (!title) return showMsg("Le nom est obligatoire.", true);
+  if (!d) return showMsg("Choisis la date et l’heure.", true);
+  if (u && !/^https:\/\//i.test(u)) return showMsg("Le lien doit commencer par https://", true);
+  var row = { title: title, venue: $("#cv").value.trim(), city: $("#cc").value.trim(), starts_at: new Date(d).toISOString(), ticket_url: u || null };
+  busy(true, "Enregistrement…");
+  (old.id ? api("PATCH", "concerts?id=eq." + old.id, row) : api("POST", "concerts", row)).then(function () {
+    st.edit = null; busy(false); toast("Enregistré ✔"); return loadAll();
+  }).catch(function (e) { busy(false, "Enregistrer"); showMsg(e.message, true); });
+}
+
+render();
+if (sess) loadAll();
+</script>
+</body>
+</html>
